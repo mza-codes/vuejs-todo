@@ -1,28 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <main id="app">
+        <div class="bg-emerald-200 p-4 font-semibold red">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid velit fugiat
+            quasi alias dignissimos obcaecati quas optio aut delectus ipsam repudiandae
+            doloremque incidunt, a minus voluptate culpa fuga accusantium laudantium.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut optio consectetur
+            quibusdam quia, rerum quod cumque voluptatum earum temporibus et recusandae
+            odit, architecto sequi, ad soluta maiores voluptatibus explicabo nisi.
+            Accusamus iste accusantium at maxime assumenda eius ad eum veritatis cumque
+            quisquam facere consectetur voluptate, veniam nemo a nostrum repelle
+            <br />
+            Well <b>Tailwind is Working!</b>
+        </div>
+    </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: "App",
+    components: {},
+};
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    min-height: 100dvh;
+    background: linear-gradient(to bottom right, #fc5692, #fc6);
 }
 </style>
