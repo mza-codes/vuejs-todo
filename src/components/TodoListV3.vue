@@ -1,78 +1,60 @@
-<script>
+<script setup>
 import { onMounted, ref, watch } from "vue";
 import TodoNote from "./TodoNote.vue";
 
-export default {
-    name: "TodoList",
-    components: { TodoNote },
-    setup() {
-        const todos = ref([]);
-        const todo = ref({
-            text: "",
-            desc: "",
-        });
-        const error = ref("");
+const todos = ref([]);
+const error = ref("");
+const todo = ref({
+    text: "",
+    desc: "",
+});
 
-        const { addTodo, clearData, updateCache, validateTodo } = {
-            validateTodo() {
-                const { text, desc } = todo.value;
-                if (text.length < 5 || desc.length < 5) {
-                    error.value = "Minimum 5 Characters Required!";
-                    return;
-                }
-                error.value = "";
-                addTodo(text, desc);
-            },
-            addTodo(text, desc) {
-                todos.value.push({
-                    text,
-                    desc,
-                    date: `${new Date()}`,
-                    id: `${Math.floor(Math.random() * 12000) - 8 * 1}`,
-                });
+function validateTodo() {
+    const { text, desc } = todo.value;
+    if (text.length < 5 || desc.length < 5) {
+        error.value = "Minimum 5 Characters Required!";
+        return;
+    }
+    error.value = "";
+    addTodo(text, desc);
+}
 
-                todo.value = {
-                    text: "",
-                    desc: "",
-                };
+function addTodo(text, desc) {
+    todos.value.push({
+        text,
+        desc,
+        date: `${new Date()}`,
+        id: `${Math.floor(Math.random() * 12000) - 8 * 1}`,
+    });
 
-                // updateCache(todos);
-            },
-            updateCache(data) {
-                localStorage.setItem("vuejs-v2-todos", JSON.stringify(data));
-            },
-            clearData() {
-                if (window.confirm("Are you Sure, This will delete all the todos?")) {
-                    todos.value = [];
-                    // updateCache(todos);
-                }
-            },
-        };
+    todo.value = {
+        text: "",
+        desc: "",
+    };
+}
 
-        onMounted(() => {
-            todos.value = JSON.parse(localStorage.getItem("vuejs-v2-todos") || "[]");
-        });
+function updateCache(data) {
+    localStorage.setItem("vuejs-v2-todos", JSON.stringify(data));
+}
 
-        watch(
-            todos,
-            (newV, oldV) => {
-                console.log("@Change", { newV, oldV });
-                updateCache(newV);
-            },
-            {
-                deep: true,
-            }
-        );
+function clearData() {
+    if (window.confirm("Are you Sure, This will delete all the todos?")) {
+        todos.value = [];
+    }
+}
 
-        return {
-            todos,
-            todo,
-            error,
-            validateTodo,
-            clearData,
-        };
+onMounted(() => {
+    todos.value = JSON.parse(localStorage.getItem("vuejs-v2-todos") || "[]");
+});
+
+watch(
+    todos,
+    (newV, oldV) => {
+        console.log("@Change", { newV, oldV });
+        updateCache(newV);
     },
-};
+    { deep: true }
+);
 </script>
 <template>
     <div class="d-flex flex-column gap-4">

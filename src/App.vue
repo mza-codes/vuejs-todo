@@ -15,13 +15,12 @@ export default {
     <main id="app">
         <Navbar />
         <section class="container py-4">
-            <!-- <Article /> -->
             <TodoList />
         </section>
     </main>
 </template>
 
-<style>
+<style lang="css">
 #app {
     min-height: 100dvh;
     background: linear-gradient(to bottom right, #00662a, #fc6);

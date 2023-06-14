@@ -1,10 +1,20 @@
 <script>
 export default {
     name: "ArticlE",
+    data() {
+        return {
+            count: 0,
+        };
+    },
+    methods: {
+        logNow(data) {
+            console.log("event => ", data);
+        },
+    },
 };
 </script>
 <template>
-    <div class="py-4">
+    <div @click="count++" class="py-4">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid velit fugiat
         quasi alias dignissimos obcaecati quas optio aut delectus ipsam repudiandae
         doloremque incidunt, a minus voluptate culpa fuga accusantium laudantium. Lorem
@@ -14,6 +24,6 @@ export default {
         at maxime assumenda eius ad eum veritatis cumque quisquam facere consectetur
         voluptate, veniam nemo a nostrum repelle
         <br />
-        Well <b>Bootstrap is Working!</b>
+        Well <b>Bootstrap is Working! &nbsp; {{ count }}</b>
     </div>
 </template>
