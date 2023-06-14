@@ -13,6 +13,7 @@ export default {
             error: "",
         };
     },
+    components: { TodoNote },
     methods: {
         validateTodo() {
             const { text, desc } = this.todo;
@@ -28,6 +29,7 @@ export default {
                 text,
                 desc,
                 date: `${new Date()}`,
+                id: `${Math.floor(Math.random() * 12000) - 8 * 1}`,
             });
 
             this.todo = {
@@ -35,7 +37,7 @@ export default {
                 desc: "",
             };
 
-            this.updateCache(this.todos);
+            // this.updateCache(this.todos);
         },
         updateCache(data) {
             localStorage.setItem("vuejs-v2-todos", JSON.stringify(data));
@@ -43,14 +45,19 @@ export default {
         clearData() {
             if (window.confirm("Are you Sure, This will delete all the todos?")) {
                 this.todos = [];
-                this.updateCache(this.todos);
+                // this.updateCache(this.todos);
             }
         },
     },
     created() {
         this.todos = JSON.parse(localStorage.getItem("vuejs-v2-todos") || "[]");
     },
-    components: { TodoNote },
+    watch: {
+        todos(newV, oldV) {
+            console.log("@Change", { newV, oldV });
+            this.updateCache(newV);
+        },
+    },
 };
 </script>
 <template>
@@ -104,6 +111,7 @@ export default {
             :text="data.text"
             :desc="data.desc"
             :date="data.date"
+            :id="data.id"
         />
     </div>
 </template>

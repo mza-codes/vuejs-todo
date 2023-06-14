@@ -10,6 +10,9 @@ export default {
             const form = new FormData(e.target);
             console.log(`search =>`, form.get("q"));
         },
+        pass(data) {
+            console.log(data);
+        },
     },
 };
 </script>
@@ -46,7 +49,7 @@ export default {
                         >
                             Dropdown
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul @click="pass($event)" class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><hr class="dropdown-divider" /></li>
@@ -56,7 +59,8 @@ export default {
                         </ul>
                     </li>
                 </ul>
-                <form @submit.prevent="onSubmit" class="d-flex" role="search">
+
+                <!-- <form @submit.prevent="onSubmit" class="d-flex" role="search">
                     <input
                         class="form-control me-2"
                         type="search"
@@ -65,7 +69,7 @@ export default {
                         name="q"
                     />
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </form> -->
             </div>
         </div>
     </nav>
